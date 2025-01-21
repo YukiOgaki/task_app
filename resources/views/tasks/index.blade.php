@@ -12,7 +12,7 @@
 <body>
     <h1>タスク一覧</h1>
     @foreach ($tasks as $task)
-        <div class="index-button">
+        <div class="button-groupA">
             <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
             <form action="{{ route('tasks.destroy', $task) }}" method='POST'>
                 @csrf

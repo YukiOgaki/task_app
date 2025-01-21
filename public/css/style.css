@@ -1,19 +1,14 @@
 @charset "utf-8";
 
-.index-button,
-.show-button,
-.edit-button {
+.button-groupA,
+.button-groupB {
     display: flex;
 }
 
-.index-button>*:not(:last-child) {
+.button-groupA>*:not(:last-child) {
     margin-right: 10px;
 }
 
-.error {
-    color: red;
-}
-
-.value{
+.value {
     margin-bottom: 10px;
 }

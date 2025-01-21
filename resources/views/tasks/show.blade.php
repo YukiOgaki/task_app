@@ -18,7 +18,7 @@
     <div>【内容】</div>
     <div class="value">{{ $task['body'] }}</div>
 
-    <div class="show-button">
+    <div class="button-groupB">
         <button onclick='location.href="{{ route('tasks.index') }}"'>一覧へ戻る</button>
         <button onclick='location.href="{{ route('tasks.edit', $task) }}"'>編集する</button>
         <form action="{{ route('tasks.destroy', $task) }}" method='POST'>
