@@ -24,6 +24,20 @@
 
     <hr>
     <h1>新規タスク登録</h1>
+
+    @if ($errors->any())
+        <div class="error">
+            <p>
+                <b>【エラー内容】</b>
+            </p>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('tasks.store') }}" method="post">
         @csrf
         <p>

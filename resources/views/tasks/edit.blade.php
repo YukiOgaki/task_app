@@ -10,6 +10,20 @@
 
 <body>
     <h1>タスク編集</h1>
+
+    @if ($errors->any())
+        <div class="error">
+            <p>
+                <b>【エラー内容】</b>
+            </p>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <form action="{{ route('tasks.update', $task) }}" method="post">
         @csrf
         @method('PATCH')
@@ -28,7 +42,7 @@
             <input type="submit" value="更新">
             <button onclick='location.href="{{ route('tasks.show', $task) }}"'>詳細に戻る</button>
         </div>
-        
+
     </form>
 </body>
 
