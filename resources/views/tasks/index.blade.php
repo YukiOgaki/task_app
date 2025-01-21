@@ -6,16 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>task index</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
     <h1>タスク一覧</h1>
-    <ul>
-        @foreach ($tasks as $task)
-            <li><a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a></li>
-            <li>「削除する」ボタンをここに入れる</li>
-        @endforeach
-    </ul>
+    @foreach ($tasks as $task)
+        <div class="button-group">
+            <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
+            <form action="{{ route('tasks.destroy', $task) }}" method='POST'>
+                @csrf
+                @method('DELETE')
+                <input type="submit" value='削除する' onclick="if(!confirm('削除しますか?')){return false};">
+            </form>
+        </div>
+    @endforeach
 
     <hr>
     <h1>新規タスク登録</h1>
