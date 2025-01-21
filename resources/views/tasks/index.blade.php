@@ -12,7 +12,7 @@
 <body>
     <h1>タスク一覧</h1>
     @foreach ($tasks as $task)
-        <div class="button-group">
+        <div class="index-button">
             <a href="{{ route('tasks.show', $task) }}">{{ $task->title }}</a>
             <form action="{{ route('tasks.destroy', $task) }}" method='POST'>
                 @csrf
@@ -32,10 +32,10 @@
         </p>
         <p>
             <label for="body">本文</label><br>
-            <textarea name="body" class="body" id="body">{{ old('body') }}</textarea>
+            <textarea name="body" id="body">{{ old('body') }}</textarea>
         </p>
 
-        <input type="submit" value="Create Task">
+        <button onclick="location.href='{{ route('tasks.create') }}'">Create Task</button>
     </form>
 </body>
 

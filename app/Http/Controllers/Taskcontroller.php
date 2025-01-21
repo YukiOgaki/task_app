@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-//use App\Http\Requests\TaskRequest;
+use App\Http\Requests\TaskRequest;
 
 
 class Taskcontroller extends Controller
@@ -15,26 +15,20 @@ class Taskcontroller extends Controller
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
-    // createページへ移動
-    public function create()
+    // storeページへ移動
+    public function store(TaskRequest $request)
     {
-        return view('tasks.create');
+        //インスタンスの作成
+        $task = new Task();
+    
+        $task->title = $request->title;
+        $task->body = $request->body;
+    
+        $task->save();
+    
+        //登録したらindexに戻る
+        return redirect(route('tasks.index'));
     }
-
-    // // storeページへ移動
-    // public function store(TaskRequest $request)
-    // {
-    //     //インスタンスの作成
-    //     $task = new Task();
-
-    //     $task->title = $request->title;
-    //     $task->body = $request->body;
-
-    //     $task->save();
-
-    //     //登録したらindexに戻る
-    //     return redirect(route('tasks.index'));
-    // }
 
     // showページへ移動
     public function show($id)
@@ -50,20 +44,20 @@ class Taskcontroller extends Controller
         return view('tasks.edit', ['task' => $task]);
     }
 
-    // // updateページへ移動
-    // public function update(TaskRequest $request, $id)
-    // {
-    //     //更新対象データの取得
-    //     $task = Task::find($id);
+    // updateページへ移動
+    public function update(TaskRequest $request, $id)
+    {
+        //更新対象データの取得
+        $task = Task::find($id);
 
-    //     $task->title = $request->title;
-    //     $task->body = $request->body;
+        $task->title = $request->title;
+        $task->body = $request->body;
 
-    //     $task->save();
+        $task->save();
 
-    //     //更新したらindexに戻る
-    //     return redirect(route('tasks.index'));
-    // }
+        //更新したらindexに戻る
+        return redirect(route('tasks.index'));
+    }
 
     // destroyページへ移動
     public function destroy($id)
